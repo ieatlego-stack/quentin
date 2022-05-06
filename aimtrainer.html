@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Constrain</title>
+  <style>
+    body {
+      text-align: center;
+      user-select: none;
+      background-image: url("minion8.JPG");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      cursor: url('data:image/x-icon;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////////////////////////////8AAP/+AAB/8AAAf+AAAD/AAAA/AAAADwAAAA8AAAAOAAAADgAAAB8AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAB/AAAA/wAAAf/////////////////////////////////////w=='), auto;
+    }
+
+    div#container {
+      position: relative;
+      height: 300px;
+      width: 450px;
+      background-color: purple;
+      margin: auto;
+    }
+
+    img#button {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+  <script src="library.js"></script>
+  <script>
+
+  </script>
+</head>
+
+<body>
+  <audio autoplay class="nativeEmbedPlayerPid" id="pid_mwe_player_0" src="//upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg" style="width: 100%; height: 100%; z-index: 1;"></audio>
+  <div id="container">
+    <img src="minion8.JPG" draggable=false onmousedown="countUp()" alt="cool minion" id="button" style="top: 90px; left: 160px; ">
+  </div>
+  <button onclick="start()">Start </button>
+  <button onclick="stop()">Stop</button>
+  <span> timer: <span id="timer"> </span> </span>
+  <br>
+  <span id="message"> </span>
+  <span> Count: <span id="count">0</span></span><br>
+  <script>
+    var deltaX = 1; // start moving right
+    var deltaY = 1; //start moving down
+
+
+    var p = 0;
+    var timerNum = null;
+    var timerNum2 = null;
+    var ballSpeed = 20;
+
+    function start() {
+      p = 5;
+
+      if (timerNum == null && timerNum2 == null) {
+        timerNum = setInterval("move()", ballSpeed);
+        timerNum2 = setInterval("countDown()", 1000);
+      }
+
+      console.log(timerNum);
+    }
+    function stop() {
+      p = 0;
+    }
+
+    function move() {
+      let x = parseInt(getCSS("button", "left"));
+      let y = parseInt(getCSS("button", "top"));
+
+      x = x + deltaX;
+      if (x < 0) {
+        x = 0;
+        deltaX = 1;
+      }
+      else if (x > 400) {
+        x = 400;
+        deltaX = -1;
+      }
+      y = y + deltaY;
+      if (y < 0) {
+        y = 0;
+        deltaY = 1;
+      }
+      else if (y > 250) {
+        y = 250;
+        deltaY = -1;
+      }
+
+      setCSS("button", "left", x + "px");
+      setCSS("button", "top", y + "px");
+
+    }
+
+    change("timer", p)
+
+    function countDown() {
+      p = parseInt(p)
+      p = p - 1;
+      change("timer", p)
+      if (p <= 0) {
+        clearInterval(timerNum2);
+        clearInterval(timerNum);
+        timerNum = null;
+        timerNum2 = null;
+        change("message", "Times up!")
+      }
+    }
+
+    function countUp() {
+      if (timerNum == null || timerNum2 == 0) {
+        alert("stop cheating");
+      }
+      else {
+        var c = get("count");
+        c = parseInt(c);
+        c = c + 1;
+        change("count", c);
+        clearInterval(timerNum);
+        ballSpeed = parseInt(ballSpeed);
+        ballSpeed = ballSpeed * .9;
+        timerNum = setInterval("move()", ballSpeed);
+      }
+
+    }
+  </script>
+</body>
+
+</html>

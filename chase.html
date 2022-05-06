@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<!-- 
+Our extentions are:
+assigned chaser and chasee - one player is faster than another 
+game over when players touch - logs that carti wins
+game over when timer ends - logs that turkey man wins
+-->
+
+
+<head>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <meta charset="UTF-8">
+  <title>albanian vs albanian</title>
+  <style>
+    div#p2,
+    div#p1 {
+      height: 40px;
+      width: 40px;
+      border: solid red 5px;
+      position: absolute;
+    }
+
+    div#p1 {
+      background-image: url('shewannameetcarti.gif');
+      background-size: cover;
+    }
+
+    div#p2 {
+      background-image: url('kaan.jpg');
+      background-size: cover;
+    }
+
+    div#container {
+      height: 700px;
+      width: 800px;
+      margin: auto;
+      position: relative;
+      background-color: palegreen;
+      background-image: url('Capture.PNG');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    body {
+      cursor: url("cool2.cur"), default;
+      background-image: url('coolhorse.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      text-align: center;
+      color: red;
+    }
+  </style>
+  <script src='library.js'></script>
+
+  <script>
+    var key1 = -1;
+    var key2 = -1;
+
+    function keys() {
+      let key = event.keyCode;
+
+      if (key == 37 || key == 38 || key == 39 || key == 40) {
+        key1 = key;
+      }
+      else if (key == 65 || key == 87 || key == 68 || key == 83) {
+        key2 = key;
+      }
+    }
+
+
+    function move() {
+      if (collision("p1", "p2") == true && key1 != -1) {
+        key1 = -1;
+        key2 = -1;
+        setCSS("p1", "left", 1);
+        setCSS("p1", "top", 1);
+        setCSS("p2", "left", 650);
+        setCSS("p2", "top", 650);
+        console.log("game over!");
+        console.log("Carti wins");
+      }
+        if (collision("p1", "p2") == true && key1 != -1) {
+        key1 = -1;
+        key2 = -1;
+        setCSS("p1", "left", 1);
+        setCSS("p1", "top", 1);
+        setCSS("p2", "left", 650);
+        setCSS("p2", "top", 650);
+      }
+
+      // get the current position
+      var y = getCSS("p2", "top");
+      y = parseInt(y);
+      var x = getCSS("p2", "left");
+      x = parseInt(x);
+      // check global variable to see which way to move
+      if (key1 == 40) {
+        y = y + 2;
+      }
+      else if (key1 == 38) {
+        y = y - 2;
+      }
+      else if (key1 == 37) {
+        x = x - 2;
+      }
+      else if (key1 == 39) {
+        x = x + 2;
+      }
+      if (y <= 0) {
+        y = 0;
+        key1 = 40;
+      }
+      if (y >= 650) {
+        y = 650;
+        key1 = 38;
+      }
+      if (x <= 0) {
+        x = 0;
+        key1 = 39;
+      }
+      if (x >= 650) {
+        x = 650;
+        key1 = 37;
+      }
+      // update to new location
+      setCSS("p2", "top", y + "px");
+      setCSS("p2", "left", x + "px");
+
+    }
+
+    function move2() {
+      if (collision("p1", "p2") == true && key2 != -1) {
+        key1 = -1;
+        key2 = -1;
+        setCSS("p2", "left", 649);
+        setCSS("p2", "top", 649);
+        setCSS("p1", "left", 1);
+        setCSS("p1", "top", 1);
+        alert("game over! Carti wins!");
+        console.log("game over!");
+        console.log("Carti wins");
+        
+      }
+
+      var y = getCSS("p1", "top");
+      y = parseInt(y);
+      var x = getCSS("p1", "left");
+      x = parseInt(x);
+      // check global variable to see which way to move
+      if (key2 == 83) {
+        y = y + 2;
+      }
+      else if (key2 == 87) {
+        y = y - 2;
+      }
+      else if (key2 == 65) {
+        x = x - 2;
+      }
+      else if (key2 == 68) {
+        x = x + 2;
+      }
+      if (y <= 0) {
+        y = 0;
+        key2 = 83;
+      }
+      if (y >= 650) {
+        y = 650;
+        key2 = 87;
+      }
+      if (x <= 0) {
+        x = 0;
+        key2 = 68;
+      }
+      if (x >= 650) {
+        x = 650;
+        key2 = 65;
+      }
+      // update to new location
+      setCSS("p1", "top", y + "px");
+      setCSS("p1", "left", x + "px");
+    }
+    var timerNum = setInterval("move()", 8);
+    var timerNum = setInterval("move2()", 10);
+  </script>
+</head>
+
+<body onkeydown="keys()">
+
+  <h1>
+    Changji Hui Autonomous Prefecture</h1>
+<h2> carti is the chaser </h2> 
+<h2> turkey man is the chasee </h2>
+<span> timer: <span id="timer"> </span> </span>
+  <div id="container">
+    <div id="p1" style="top: 50px; left: 50px;"></div>
+    <div id="p2" style="top: 100px; left: 500px;"></div>
+  </div>
+  
+    <script>
+  
+  var p = 30;
+   
+    change("timer", p)
+
+    function yo() {
+
+      p = p - 1;
+      change("timer", p)
+      if (p <= 0) {
+        p = 30;
+        key1 = -1;
+        key2 = -1;
+        setCSS("p2", "left", 649);
+        setCSS("p2", "top", 649);
+        setCSS("p1", "left", 1);
+        setCSS("p1", "top", 1);
+        alert("game over! Turkey Man wins!");
+        console.log("game over!");
+        console.log("Turkey Man wins");
+      }
+      
+}
+setInterval("yo()", 1000);
+
+
+</script>
+<audio autoplay class="nativeEmbedPlayerPid" id="pid_mwe_player_0" src="//upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg" style="width: 100%; height: 100%; z-index: 1;"></audio>
+<audio autoplay class="nativeEmbedPlayerPid" id="pid_mwe_player_0" src="//upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg" style="width: 100%; height: 100%; z-index: 1;"></audio>
+<audio autoplay class="nativeEmbedPlayerPid" id="pid_mwe_player_0" src="//upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg" style="width: 100%; height: 100%; z-index: 1;"></audio>
+<audio autoplay class="nativeEmbedPlayerPid" id="pid_mwe_player_0" src="//upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg" style="width: 100%; height: 100%; z-index: 1;"></audio>
+<audio autoplay class="nativeEmbedPlayerPid" id="pid_mwe_player_0" src="//upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg" style="width: 100%; height: 100%; z-index: 1;"></audio>
+</body>
+
+</html>

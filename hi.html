@@ -1,0 +1,37 @@
+ var y = getCSS("p1", "top");
+      y = parseInt(y);
+      var x = getCSS("p1", "left");
+      x = parseInt(x);
+      // check global variable to see which way to move
+      if (key2 == 87) {
+        y = y + 15;
+      }
+      else if (key2 == 68) {
+        y = y - 15;
+      }
+      else if (key2 == 83) {
+        x = x - 15;
+      }
+      else if (key2 == 65) {
+        x = x + 15;
+      }
+      if (y <= 0) {
+        y = 0;
+        key2 = 40;
+      }
+      if (y >= 350) {
+        y = 350;
+        key2 = 38;
+      }
+      if (x <= 0) {
+        x = 0;
+        key2 = 39;
+      }
+      if (x >= 350) {
+        x = 350;
+        key2 = 37;
+      }
+      // update to new location
+      setCSS("p1", "top", y + "px");
+      setCSS("p1", "left", x + "px");
+    }

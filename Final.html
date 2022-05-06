@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Final Game</title>
+  <link href="x.ico" rel="icon" type="image/x-icon" />
+  <style>
+    img#block {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      background-color: red;
+    }
+
+
+
+    div#background1 {
+      position: absolute;
+      height: 800px;
+      width: 450px;
+      background-color: rgba(64, 255, 102, 0.8);
+    }
+
+    div#background2 {
+      position: absolute;
+      height: 100px;
+      width: 205px;
+      background-color: rgba(255, 163, 238, 0.8);
+    }
+
+    div#background3 {
+      position: absolute;
+      height: 800px;
+      width: 900px;
+      background-color: rgba(255, 163, 238, 0.8);
+    }
+
+    div#background4 {
+      position: absolute;
+      height: 100px;
+      width: 155px;
+      background-color: rgba(255, 163, 238, 0.8);
+    }
+
+    div#background5 {
+      position: absolute;
+      height: 800px;
+      width: 170px;
+      background-color: rgba(64, 255, 102, 0.8);
+    }
+
+    div#barrier1 {
+      position: absolute;
+      border: solid black 3px;
+      height: 800px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier2 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 400px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier3 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 1550px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier4 {
+      position: absolute;
+      border: solid black 3px;
+      height: 700px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier5 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 200px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier6 {
+      position: absolute;
+      border: solid black 3px;
+      height: 700px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier7 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 200px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier8 {
+      position: absolute;
+      border: solid black 3px;
+      height: 700px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier9 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 1224px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier10 {
+      position: absolute;
+      border: solid black 3px;
+      height: 700px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier11 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 150px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier12 {
+      position: absolute;
+      border: solid black 3px;
+      height: 700px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier13 {
+      position: absolute;
+      border: solid black 3px;
+      height: 0px;
+      width: 174px;
+      background-color: #C4FFE3;
+    }
+
+    div#barrier14 {
+      position: absolute;
+      border: solid black 3px;
+      height: 800px;
+      width: 0px;
+      background-color: #C4FFE3;
+    }
+
+    body {
+      background-image: url('Untitled.png');
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-attachment: fixed;
+      cursor: url("cool2.cur"), default;
+      text-align: center;
+
+    }
+
+    img.ball {
+      position: absolute;
+    }
+
+    div#counter1 {
+      position: absolute;
+      left: 100px;
+      font-size: 40px;
+    }
+  </style>
+  <script src='library.js'></script>
+  <script>
+    // global variable to keep track of the last key that was pressed
+    var key = -1;
+
+    function keys() {
+      // get key code and store in global variable - that's all
+      key = event.keyCode;
+    }
+    var p = 0;
+
+    function move() {
+      // get the current position
+      var y = getCSS("block", "top");
+      y = parseInt(y);
+      var originalY = y;
+
+      var x = getCSS("block", "left");
+      x = parseInt(x);
+      var originalX = x;
+
+      // check global variable to see which way to move
+      if (key == 40) {
+        y = y + 3;
+      }
+      else if (key == 38) {
+        y = y - 3;
+      }
+      else if (key == 37) {
+        x = x - 3;
+      }
+      else if (key == 39) {
+        x = x + 3;
+      }
+
+
+      // update to new location
+      setCSS("block", "top", y + "px");
+      setCSS("block", "left", x + "px");
+
+      let num = 14; // the number of barriers
+      for (let i = 1; i <= num; i = i + 1) {
+        let id = "barrier" + i;
+        if (collision("block", id) == true) {
+          setCSS("block", "top", originalY + "px");
+          setCSS("block", "left", originalX + "px");
+
+        }
+
+
+      }
+
+      let num1 = 8; // the number of balls
+
+      for (let e = 1; e <= num1; e = e + 1) {
+        let id = "ball" + e;
+        if (collision("block", id) == true) {
+          setCSS("block", "top", "100px");
+          setCSS("block", "left", "100px");
+          var snd = new Audio('jumped.mp3');
+          snd.play();
+
+          p++;
+          change("counter2", p);
+        }
+      }
+
+      if (collision("block", "background5") == true) {
+        alert("you win!")
+        setCSS("block", "top", "100px");
+        setCSS("block", "left", "1650px");
+        key = -1;
+      }
+    }
+
+
+    function stop() {
+      // to stop, set the global var to an inalid key
+      stopKey = event.keyCode;
+      if (stopKey == key) {
+        key = -1;
+      }
+    }
+
+    var timerNum = setInterval("move()", 10);
+
+    var deltaX = 1;
+    var deltaY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+    timerNum = setInterval("balls()", 1);
+    console.log(timerNum);
+
+    function balls() {
+      let num1 = 8; // the number of balls
+      for (let e = 1; e <= num1; e = e + 1) {
+        let id = "ball" + e;
+        move1(e, id);
+      }
+    }
+
+    function move1(e, id) {
+
+
+      let y2 = parseInt(getCSS(id, "top"));
+
+      y2 = y2 + deltaY[e];
+
+
+      if (y2 > 880) {
+        y2 = 880;
+        deltaY[e] *= -1;
+      }
+      else if (y2 < 90) {
+        y2 = 90;
+        deltaY[e] *= -1;
+      }
+
+      setCSS(id, "top", y2 + "px");
+    }
+  </script>
+</head>
+
+<body onkeydown="keys()" onkeyup="stop()">
+
+  <div id="counter1"> Death Counter: <span id="counter2"> </span>
+  </div>
+
+  <div id="background1" style="top:90px; left: 40px"></div>
+  <div id="background2" style="top:790px; left: 490px"></div>
+  <div id="background3" style="top:90px; left: 690px"></div>
+  <div id="background4" style="top:90px; left: 1590px"></div>
+  <div id="background5" style="top:90px; left: 1745px"></div>
+  <div id="barrier1" style="top: 90px; left: 40px"></div>
+  <div id="barrier2" style="top: 90px; left: 40px"></div>
+  <div id="barrier3" style="top: 890px; left: 40px"></div>
+  <div id="barrier4" style="top: 90px; left: 40px"></div>
+  <div id="barrier5" style="top: 790px; left: 490px"></div>
+  <div id="barrier6" style="top: 90px; left: 490px"></div>
+  <div id="barrier7" style="top: 90px; left: 290px"></div>
+  <div id="barrier8" style="top: 90px; left: 690px"></div>
+  <div id="barrier9" style="top: 90px; left: 690px"></div>
+  <div id="barrier10" style="top: 190px; left: 1590px"></div>
+  <div id="barrier11" style="top: 190px; left: 1590px"></div>
+  <div id="barrier12" style="top: 190px; left: 1740px"></div>
+  <div id="barrier13" style="top: 890px; left: 1740px"></div>
+  <div id="barrier14" style="top: 90px; left: 1914px"></div>
+  <img src="x.gif" alt="xxxtentacion" id="block" style=" top: 100px; left: 100px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball1" style=" height: 30px; width: 40px; top: 100px; left: 500px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball2" style=" height: 30px; width: 40px; top: 100px; left: 650px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball3" style=" height: 30px; width: 40px; top: 100px; left: 800px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball4" style=" height: 30px; width: 40px; top: 100px; left: 950px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball5" style=" height: 30px; width: 40px; top: 100px; left: 1100px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball6" style=" height: 30px; width: 40px; top: 100px; left: 1250px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball7" style=" height: 30px; width: 40px; top: 100px; left: 1400px;">
+  <img src="migos.png" alt="migos" class="ball" id="ball8" style=" height: 30px; width: 40px; top: 100px; left: 1550px;">
+
+</body>
+
+</html>
